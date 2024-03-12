@@ -1,0 +1,28 @@
+class Main:
+
+    #====================GuessNumber function====================
+    def GuessNumber(self, number):
+        # ===YOU CAN EDIT OR EVEN ADD NEW FUNCTIONS IN THE FOLLOWING PART========
+        import random
+        x=0
+        y=int(number)
+        m=''
+        while(m != 'c'):
+            n=random.randint(x, y)
+            m=str(input(f'Is {n} too high(h), too low(l), or correct(c): '))
+            if m == 'l':
+                x = n + 1
+            elif m == 'h':
+                y = n - 1
+        print(f'Welldone! The computer guessed your number {n} correctly!') 
+        # end def
+
+#==================DO NOT CHANGE THE CODE BELOW=====================
+    def main(self):
+        number = input("Enter a range for guessed number: ")
+        print("OUTPUT")
+        self.GuessNumber(number)
+        print("FINISH")
+main = Main()
+main.main()
+

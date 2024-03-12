@@ -1,0 +1,97 @@
+# ===YOU CAN ADD NEW CLASSES IN THE FOLLOWING PART========
+
+
+#=========================================================
+class Main:
+
+    #====EDIT THIS FUNCTION TO READ AND RETURN LIST EMPLOYEE========
+    def InputListEmployee(self):
+        n = int(input('Enter the number of employees: '))
+        employeeList = []
+        for i in range(n):
+            print(f'Enter employees {i+1}')
+            name = input(f"Enter name: ")
+            salary = float(input(f"Enter salary: "))
+            age = int(input(f"Enter age: "))
+            employeeList.append({'name': name, 'salary': salary, 'age': age})
+        return employeeList
+        # end def
+
+    #====================f1====================
+    def f1(self):
+        #=======DO NOT EDIT CODE BELOW===============
+        employeeList = self.InputListEmployee()
+        print("OUTPUT")
+        #==========================================
+
+        # ===YOU CAN EDIT OR EVEN ADD NEW FUNCTIONS IN THE FOLLOWING PART========
+        for idx, employee in enumerate(employeeList, start=1):
+            print(f"Employees {idx}")
+            print(employee['name'])
+            print(employee['salary'])
+            print(employee['age'])
+            
+        # end def
+
+
+    #====================f2====================
+    def f2(self):
+        #=======DO NOT EDIT CODE BELOW===============
+        employeeList = self.InputListEmployee()
+        print("OUTPUT")
+        #==========================================
+
+        # ===YOU CAN EDIT OR EVEN ADD NEW FUNCTIONS IN THE FOLLOWING PART========
+        sorted_employees = sorted(employeeList, key=lambda x: x['age'], reverse=True)
+        for idx, employee in enumerate(sorted_employees, start=1):
+            print(f"Employees {idx}")
+            print(employee['name'])
+            print(employee['salary'])
+            print(employee['age'])
+        # end def
+
+
+
+    #====================f3====================
+    def f3(self):
+        #=======DO NOT EDIT CODE BELOW===============
+        employeeList = self.InputListEmployee()
+        print("OUTPUT")
+        #==========================================
+
+        # ===YOU CAN EDIT OR EVEN ADD NEW FUNCTIONS IN THE FOLLOWING PART========
+        m=[]
+        for i in employeeList:
+            if i['age'] >= 18:
+                m.append(i)
+        sorted_employees1 = sorted(m, key=lambda y: y['salary'], reverse=True)
+        for idx, employee in enumerate(sorted_employees1, start=1):
+            print(f"Employees {idx}")
+            print(employee['name'])
+            print(employee['salary'])
+            print(employee['age'])
+        # end def
+
+
+
+
+#==================DO NOT CHANGE THE CODE BELOW=====================
+    def main(self):
+        print(" 1. Test f1 (1 mark)")
+        print(" 2. Test f2 (2 mark)")
+        print(" 3. Test f3 (1 mark)")
+        print(" Your selection (1 -> 3): ")
+        choice = int(input())
+        
+        if choice == 1:
+            self.f1()
+        elif choice == 2:
+            self.f2()
+        elif choice == 3:
+            self.f3()
+        else:
+            print("Wrong select")
+        print("FINISH")
+main = Main()
+main.main()
+

@@ -1,0 +1,170 @@
+class Main:
+    def __init__(self):
+        self.Sinh_vien = []
+
+    def sinh_vien(self):
+        while True:
+            ID = int(input("Nhap ID sinh vien: "))
+            if any(student['ID'] == ID for student in self.Sinh_vien):
+                print(f"Sinh vien co ID: '{ID}' da ton tai.")
+            else:
+                Ten_sv = str(input("Nhap ten sinh vien: "))
+                Gioi_tinh = str(input("Nhap gioi tinh sinh vien: "))
+                Tuoi = int(input("Nhap tuoi sinh vien: "))
+                Toan = float(input("Nhap diem toan: "))
+                Ly = float(input("Nhap diem ly: "))
+                Hoa = float(input("Nhap diem hoa: "))
+                Diem_Tb = float((Toan + Ly + Hoa)/3)
+                Hoc_luc = ''
+                if Diem_Tb >= 8:
+                    Hoc_luc = 'Gioi'
+                elif 8 > Diem_Tb >= 6.5:
+                    Hoc_luc = 'Kha'
+                elif 6.5 > Diem_Tb >= 5:
+                    Hoc_luc = 'Trung binh'
+                else:
+                    Hoc_luc = 'Yeu'
+                self.Sinh_vien.append({'ID': ID, 'Ten_sv': Ten_sv, 'Gioi_tinh': Gioi_tinh, 'Tuoi': Tuoi, 'Toan': Toan, 'Ly': Ly, 'Hoa': Hoa,  'Diem_Tb': Diem_Tb,  'Hoc_luc': Hoc_luc})
+            x = input("Ban co muon nhap them sinh vien (y/n)?: ")
+            if x.lower() != "y":
+                self.main()
+                break
+    
+    def f2(self, student_id):
+        found = False
+        for student in self.Sinh_vien:
+            if student['ID'] == student_id:
+                print(f"Thong tin sinh vien co ID {student_id}:")
+                print(f"Ten sinh vien: {student['Ten_sv']}")
+                print(f"Gioi tinh: {student['Gioi_tinh']}")
+                print(f"Tuoi: {student['Tuoi']}")
+                print(f"Diem toan: {student['Toan']}")
+                print(f"Diem ly: {student['Ly']}")
+                print(f"Diem hoa: {student['Hoa']}")
+                print(f"Diem trung binh: {student['Diem_Tb']}")
+                print(f"Hoc luc: {student['Hoc_luc']}")
+                print("Nhap thong tin moi:")
+                Ten_sv = str(input("Nhap ten sinh vien: "))
+                Gioi_tinh = str(input("Nhap gioi tinh sinh vien: "))
+                Tuoi = int(input("Nhap tuoi sinh vien: "))
+                Toan = float(input("Nhap diem toan: "))
+                Ly = float(input("Nhap diem ly: "))
+                Hoa = float(input("Nhap diem hoa: "))
+                Diem_Tb = (Toan + Ly + Hoa) / 3
+                Hoc_luc = ''
+                if Diem_Tb >= 8:
+                    Hoc_luc = 'Gioi'
+                elif 8 > Diem_Tb >= 6.5:
+                    Hoc_luc = 'Kha'
+                elif 6.5 > Diem_Tb >= 5:
+                    Hoc_luc = 'Trung binh'
+                else:
+                    Hoc_luc = 'Yeu'
+                student.update({'Ten_sv': Ten_sv, 'Gioi_tinh': Gioi_tinh, 'Tuoi': Tuoi, 'Toan': Toan, 'Ly': Ly, 'Hoa': Hoa, 'Diem_Tb': Diem_Tb, 'Hoc_luc': Hoc_luc})
+                found = True
+                print("Da cap nhat thong tin sinh vien.")
+                break
+        if not found:
+            print(f"Khong tim thay sinh vien voi ID {student_id}.")
+        self.main()
+     
+    def f3(self, query):
+        query = int(query)
+        found = False
+        for idx1, sv1 in enumerate(self.Sinh_vien):
+            if sv1['ID'] == query:
+                print(f"Dang xoa sinh vien voi ID: {query}")
+                del self.Sinh_vien[idx1]
+                print('Da hoan thanh')
+                found = True
+                break
+        if not found:
+            print(f"Khong co sinh vien co ID: '{query}'.")
+        self.main()
+    
+    def f4(self, query):
+        found = False
+        for idx1, sv1 in enumerate(self.Sinh_vien, start=1):
+            if sv1['Ten_sv'] == query.lower():
+                print(f"Dang tim kiem sinh vien voi ten: {query}")
+                print('Da tim thay:')
+                for idx, sv in enumerate(self.Sinh_vien, start=1):
+                    print(f"ID: {sv['ID']}")
+                    print(f"Ten sinh vien: {sv['Ten_sv']}")
+                    print(f"Gioi tinh: {sv['Gioi_tinh']}")
+                    print(f"Tuoi: {sv['Tuoi']}")
+                    print(f"Diem toan: {sv['Toan']}")
+                    print(f"Diem ly: {sv['Ly']}")
+                    print(f"Diem hoa: {sv['Hoa']}")
+                    print(f"Diem trung binh: {sv['Diem_Tb']}")
+                    print(f"Hoc luc: {sv['Hoc_luc']}")
+                    found = True
+        if not found:
+            print(f"Dang tim kiem sinh vien voi ten: {query}")
+            print(f"Khong co sinh vien co ID: '{query}'.")
+        self.main()
+            
+    def f5(self):
+        self.Sinh_vien.sort(key=lambda x: x['Diem_Tb'], reverse = False)
+        self.main()
+        
+    def f6(self):
+        self.Sinh_vien.sort(key=lambda x: x['Ten_sv'], reverse = False)
+        self.main()
+        
+    def f7(self):
+        self.Sinh_vien.sort(key=lambda x: x['ID'], reverse = False)
+        self.main()
+
+    def f8(self):
+        for idx, sv in enumerate(self.Sinh_vien, start=1):
+            print(f"ID: {sv['ID']}")
+            print(f"Ten sinh vien: {sv['Ten_sv']}")
+            print(f"Gioi tinh: {sv['Gioi_tinh']}")
+            print(f"Tuoi: {sv['Tuoi']}")
+            print(f"Diem toan: {sv['Toan']}")
+            print(f"Diem ly: {sv['Ly']}")
+            print(f"Diem hoa: {sv['Hoa']}")
+            print(f"Diem trung binh: {sv['Diem_Tb']}")
+            print(f"Hoc luc: {sv['Hoc_luc']}")
+        self.main()
+
+    def main(self):
+        print(" 1. Them sinh vien.")
+        print(" 2. Cap nhat thong tin sinh vien boi ID.")
+        print(" 3. Xoa sinh vien boi ID.")
+        print(" 4. Tim kiem sinh vien theo ten.")
+        print(" 5. Sap xep sinh vien theo diem trung binh(GPA).")
+        print(" 6. Sap xep sinh vien theo ten.")
+        print(" 7. Sap xep sinh vien theo ID.")
+        print(" 8. Hien thi danh sach sinh vien.")
+        print(" 9. Thoat.")
+        choice = int(input("Hay chon tu 1 -> 9: "))
+        if choice == 1:
+            self.sinh_vien()
+        elif choice == 2:
+            student_id = int(input("Nhap ID sinh vien can cap nhat: "))
+            self.f2(student_id)
+        elif choice == 3:
+            query = input("Nhap ID sinh vien can xoa: ")
+            self.f3(query)
+        elif choice == 4:
+            query = input("Nhap ten sinh vien can tim: ")
+            self.f4(query)
+        elif choice == 5:
+            self.f5()
+        elif choice == 6:
+            self.f6()
+        elif choice == 7:
+            self.f7()
+        elif choice == 8:
+            self.f8()
+        elif choice == 9:
+            print("Dang thoat...")
+            print("Hoan thanh")
+        else:
+            print("Wrong select")
+main = Main()
+main.main()
+
+

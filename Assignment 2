@@ -1,0 +1,105 @@
+class Main:
+    def Nhap_sach(self):
+        n = int(input('Tong so cuon sach: '))
+        self.Sach = []
+        for i in range(n):
+            print(f'Nhap sach so {i+1}')
+            Ten_sach = str(input("Nhap ten sach: "))
+            Ten_tac_gia = str(input("Nhap ten tac gia: "))
+            Nha_xuat_ban = str(input("Nhap ten nha xuat ban: "))
+            Nam_XB = int(input("Nhap nam xuat ban: "))
+            Gia_ban = float(input("Nhap gia ban cua sach: "))
+            self.Sach.append({'Ten_sach': Ten_sach, 'Ten_tac_gia': Ten_tac_gia, 'Nha_xuat_ban': Nha_xuat_ban, 'Nam_XB': Nam_XB, 'Gia_ban': Gia_ban})
+        with open('FU.txt', 'w') as file:
+            file.write('===========================================\n')
+            file.write(f'{n}\n')
+            for idx, sach in enumerate(self.Sach, start=1):
+                file.write(f"{sach['Ten_sach']}\n")
+                file.write(f"{sach['Ten_tac_gia']}\n")
+                file.write(f"{sach['Nha_xuat_ban']}\n")
+                file.write(f"{sach['Nam_XB']}\n")
+                file.write(f"{sach['Gia_ban']}\n\n")   
+            file.write('===========================================')
+        with open('FU2022.txt', 'w') as file1:
+            file1.write('===========================================\n')
+            file1.write(f'{n}\n')
+        return self.Sach, n
+
+    def f2(self):
+        with open('FU.txt', 'r') as file:
+            noi_dung = file.read()
+        print(noi_dung)
+        
+    def sap_xep_sach(self):
+        self.Sach.sort(key=lambda x: (-x['Nam_XB'], -x['Gia_ban']))
+
+    def f3(self):
+        self.sap_xep_sach()
+        with open('FU2022.txt', 'a') as file1:
+            for idx1, sach1 in enumerate(self.Sach, start=1):
+                file1.write(f"{sach1['Ten_sach']}\n")
+                file1.write(f"{sach1['Ten_tac_gia']}\n")
+                file1.write(f"{sach1['Nha_xuat_ban']}\n")
+                file1.write(f"{sach1['Nam_XB']}\n")
+                file1.write(f"{sach1['Gia_ban']}\n\n")     
+            file1.write('===========================================')
+        with open('FU2022.txt', 'r') as file:
+            noi_dung1 = file.read()
+            print(noi_dung1)
+        return self.Sach
+    
+    def f4(self):
+        ten_sach_can_tim = input("Nhap ten sach can tim: ")
+        tim_thay = False
+        for sach in self.Sach:
+            if sach['Ten_sach'] == ten_sach_can_tim:
+                print("{},{},{}".format(sach['Ten_sach'], sach['Ten_tac_gia'], sach['Nha_xuat_ban']))
+                tim_thay = True
+        if not tim_thay:
+            print("Khong tim thay cuon sach nao!")
+            
+    def f5(self):
+        ten_tac_gia_can_tim = input("Nhap ten tac gia can tim: ")
+        i=0
+        tim_thay = False
+        for sach in self.Sach:
+            if sach['Ten_tac_gia'] == ten_tac_gia_can_tim:
+                i = i + 1
+                print("{},{},{}".format(sach['Ten_tac_gia'], sach['Ten_sach'], i))
+                tim_thay = True
+        if not tim_thay:
+            print("Khong tim thay tac gia tren !")
+            
+    def main(self):
+        while True:
+            print('===========================================================')
+            print(" 1. Nhap thong tin cua n cuon sach cua FU")
+            print(" 2. In ra man hinh thong tin vua nhap")
+            print(" 3. Sap xep thong tin giam dan theo nam xuat ban va hien thi")
+            print(" 4. Tim kiem theo ten sach")
+            print(" 5. Tim kiem theo ten tac gia")
+            print(" 6. Thoat")
+            print('========================================================')
+            choice = int(input("Hay chon tu 1 -> 6: "))
+            if choice == 1:
+                self.Nhap_sach()
+            elif choice == 2:
+                self.f2()
+            elif choice == 3:
+                self.f3()
+            elif choice == 4:
+                self.f4()
+            elif choice == 5:
+                self.f5()
+            elif choice == 6:
+                print("Dang thoat...")
+                print("Hoan thanh")
+                if hasattr(self, 'Sach'):
+                    del self.Sach
+                break
+            else:
+                print("Wrong select")
+main = Main()
+main.main()
+
+
